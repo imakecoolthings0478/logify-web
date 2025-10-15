@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We'll Be Back Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 20%, #1e1e2f, #111);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #bbb;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff;
+      }
+      to {
+        text-shadow: 0 0 20px #008cff, 0 0 40px #008cff, 0 0 60px #008cff;
+      }
+    }
+
+    .discord-box {
+      position: absolute;
+      bottom: 40px;
+      text-align: center;
+    }
+
+    .discord-box p {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .discord-link {
+      display: inline-block;
+      background: #5865F2;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .discord-link:hover {
+      background: #4752C4;
+      transform: scale(1.05);
+    }
+
+    /* Animated circles background */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(88, 101, 242, 0.15);
+      animation: float 10s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .circle:nth-child(1) {
+      width: 200px; height: 200px; top: 10%; left: 15%;
+      animation-delay: 0s;
+    }
+
+    .circle:nth-child(2) {
+      width: 150px; height: 150px; top: 60%; left: 70%;
+      animation-delay: 2s;
+    }
+
+    .circle:nth-child(3) {
+      width: 100px; height: 100px; top: 30%; left: 80%;
+      animation-delay: 4s;
+    }
+  </style>
+</head>
+<body>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+
+  <h1>🚧 We're Working on Something Awesome 🚧</h1>
+  <p>Our site is temporarily down for maintenance.</p>
+
+  <div class="discord-box">
+    <p>It's down currently but not for long.<br>Join our Discord and stay updated 👇</p>
+    <a href="https://discord.gg/7kj6eHGrAS" class="discord-link" target="_blank">Join Discord</a>
+  </div>
+</body>
+</html>
