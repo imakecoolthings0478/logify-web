@@ -1,262 +1,120 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logify Makers - Next-Gen Design Services</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s, color 0.3s; }
-        .gradient-text { background: linear-gradient(90deg, #007aff, #ff2d55); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass-header { background-color: rgba(10, 10, 10, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        html.light .glass-header { background-color: rgba(255, 255, 255, 0.7); }
-        .background-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; z-index: -1; }
-        html.light .background-grid { background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px); }
-        .status-tag { padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
-        .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
-    <script>
-        // Immediately set theme to prevent flash
-        if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-            document.documentElement.classList.remove('dark');
-        } else {
-            document.documentElement.classList.add('dark');
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We'll Be Back Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 20%, #1e1e2f, #111);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #bbb;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff;
+      }
+      to {
+        text-shadow: 0 0 20px #008cff, 0 0 40px #008cff, 0 0 60px #008cff;
+      }
+    }
+
+    .discord-box {
+      position: absolute;
+      bottom: 40px;
+      text-align: center;
+    }
+
+    .discord-box p {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .discord-link {
+      display: inline-block;
+      background: #5865F2;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .discord-link:hover {
+      background: #4752C4;
+      transform: scale(1.05);
+    }
+
+    /* Animated circles background */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(88, 101, 242, 0.15);
+      animation: float 10s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .circle:nth-child(1) {
+      width: 200px; height: 200px; top: 10%; left: 15%;
+      animation-delay: 0s;
+    }
+
+    .circle:nth-child(2) {
+      width: 150px; height: 150px; top: 60%; left: 70%;
+      animation-delay: 2s;
+    }
+
+    .circle:nth-child(3) {
+      width: 100px; height: 100px; top: 30%; left: 80%;
+      animation-delay: 4s;
+    }
+  </style>
 </head>
-<body class="bg-black text-gray-100 dark:bg-black dark:text-gray-100 antialiased">
-    <div class="background-grid"></div>
+<body>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
 
-    <div id="global-message-banner" class="hidden items-center justify-center gap-4 bg-blue-600 text-white p-3 text-center text-sm relative">
-        <p id="global-message-text"></p>
-        <button id="close-global-message" class="absolute right-4 p-1 hover:bg-white/20 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
-    </div>
+  <h1>🚧 We're Working on Something Awesome 🚧</h1>
+  <p>Our site is temporarily down for maintenance.</p>
 
-    <header class="sticky top-0 z-50 glass-header border-b border-white/10">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-extrabold tracking-tight">Logify<span class="gradient-text">Makers</span></h1>
-            <div class="flex items-center gap-4">
-                <a href="#my-requests" class="text-sm font-bold text-gray-300 hover:text-white transition">Track Requests</a>
-                <button id="theme-toggle-button" class="p-2 rounded-full hover:bg-white/10 transition-colors"><i data-lucide="sun-moon" class="w-5 h-5"></i></button>
-                <button id="admin-panel-button" class="p-2 rounded-full hover:bg-white/10 transition-colors"><i data-lucide="shield-check" class="w-5 h-5"></i></button>
-            </div>
-        </nav>
-    </header>
-
-    <main class="relative container mx-auto px-6 py-16 md:py-24">
-        <section class="text-center max-w-4xl mx-auto">
-            <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight">Designs That Define<br>Your Brand's Future</h2>
-            <p class="mt-6 text-lg text-gray-400">From bold logos to stunning banners, we provide top-tier design services at competitive prices, backed by unparalleled support.</p>
-            <div class="mt-8 flex justify-center gap-4">
-                <a href="#order-section" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-transform hover:scale-105">Place an Order</a>
-                <a href="https://discord.gg/7kj6eHGrAS" target="_blank" class="bg-white/10 border border-white/20 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white/20 transition-transform hover:scale-105">Join Discord</a>
-            </div>
-        </section>
-
-        <section class="grid md:grid-cols-3 gap-8 mt-24 max-w-5xl mx-auto text-center">
-            <div class="bg-white/5 border border-white/10 p-6 rounded-xl"><i data-lucide="zap" class="w-8 h-8 mx-auto text-blue-400"></i><h3 class="mt-4 font-bold text-xl">Fast Turnaround</h3><p class="mt-2 text-sm text-gray-400">We prioritize efficiency to deliver your high-quality designs as quickly as possible.</p></div>
-            <div class="bg-white/5 border border-white/10 p-6 rounded-xl"><i data-lucide="indian-rupee" class="w-8 h-8 mx-auto text-blue-400"></i><h3 class="mt-4 font-bold text-xl">Affordable Pricing</h3><p class="mt-2 text-sm text-gray-400">Get professional, premium-quality designs without breaking the bank.</p></div>
-            <div class="bg-white/5 border border-white/10 p-6 rounded-xl"><i data-lucide="message-circle" class="w-8 h-8 mx-auto text-blue-400"></i><h3 class="mt-4 font-bold text-xl">Direct Communication</h3><p class="mt-2 text-sm text-gray-400">Work directly with our team on Discord for a seamless and collaborative process.</p></div>
-        </section>
-
-        <section id="order-section" class="mt-24 max-w-2xl mx-auto">
-            <div class="bg-white/5 border border-white/10 rounded-xl shadow-2xl p-8">
-                <div id="order-status-indicator"></div>
-                <h3 class="text-3xl font-bold mb-6 text-center">Place a New Order</h3>
-                <form id="request-form" class="space-y-5">
-                    <input type="email" id="email" required placeholder="Your Email" class="w-full bg-black/20 border border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <input type="text" id="discord-user" required placeholder="Discord Username (e.g., user#1234)" class="w-full bg-black/20 border border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <div class="grid grid-cols-2 gap-4">
-                        <select id="request-type" required class="w-full bg-black/20 border border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"><option value="">Select Request Type</option><option value="Logo">Logo</option><option value="YouTube Banner">YouTube Banner</option><option value="Thumbnail">Thumbnail</option><option value="Profile Photo">Profile Photo</option><option value="Other">Other</option></select>
-                        <input type="number" id="budget" required placeholder="Budget (INR)" class="w-full bg-black/20 border border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <textarea id="details" rows="4" required placeholder="Describe your design request..." class="w-full bg-black/20 border border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-full shadow-lg hover:bg-blue-700 transition-all">Submit Request</button>
-                </form>
-            </div>
-        </section>
-
-        <section id="my-requests" class="mt-24 max-w-4xl mx-auto">
-            <h2 class="text-3xl font-extrabold text-center mb-8">Track Your Requests</h2>
-            <div id="my-requests-container" class="space-y-4"></div>
-        </section>
-    </main>
-
-    <footer class="border-t border-white/10 mt-24"><div class="container mx-auto px-6 py-8 text-center text-gray-400"><p>&copy; 2025 Logify Makers. All Rights Reserved.</p><button id="tnc-button" class="text-sm mt-2 hover:text-blue-400 underline">Terms & Conditions</button></div></footer>
-
-    <div id="tnc-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"></div>
-    <div id="admin-panel-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"></div>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-    <script type="module">
-        // --- PHASE 2: PASTE YOUR FIREBASE CONFIG OBJECT HERE ---
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-        // --- END OF CONFIG ---
-
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-
-        const D = new Proxy({}, { get: (_, prop) => document.getElementById(prop) });
-
-        const toggleModal = (modal, content) => {
-            if (!modal) return;
-            modal.innerHTML = content || '';
-            modal.classList.toggle('hidden', !content);
-            if (content) lucide.createIcons();
-        };
-
-        const updateTheme = (isDark) => {
-            localStorage.theme = isDark ? 'dark' : 'light';
-            document.documentElement.classList.toggle('dark', isDark);
-            document.documentElement.classList.toggle('light', !isDark);
-        };
-        
-        const updateOrderStatus = (isAccepting) => {
-            const statusClass = isAccepting ? 'bg-green-500/10 text-green-300 border-green-500/20' : 'bg-red-500/10 text-red-300 border-red-500/20';
-            const dotClass = isAccepting ? 'bg-green-500 animate-pulse' : 'bg-red-500';
-            const text = isAccepting ? "We are currently accepting new orders!" : "Sorry, we are not accepting new orders.";
-            D['order-status-indicator'].innerHTML = `<div class="flex items-center gap-3 p-3 mb-6 rounded-lg border ${statusClass}"><div class="w-3 h-3 rounded-full ${dotClass}"></div><span class="font-bold text-sm">${text}</span></div>`;
-        };
-
-        const renderMyRequests = () => {
-            const myRequestIds = JSON.parse(localStorage.getItem('myRequestIds')) || [];
-            if (myRequestIds.length === 0) {
-                D['my-requests-container'].innerHTML = `<p class="text-center text-gray-400">Your submitted requests will appear here.</p>`;
-                return;
-            }
-            D['my-requests-container'].innerHTML = ''; 
-            myRequestIds.forEach(id => {
-                db.collection('requests').doc(id).onSnapshot(doc => {
-                    const existingCard = D['my-requests-container'].querySelector(`[data-my-id="${id}"]`);
-                    if (existingCard) existingCard.remove();
-                    if (!doc.exists) return;
-
-                    const req = { id: doc.id, ...doc.data() };
-                    const statusInfo = { Pending: {c:'yellow',i:'clock'}, Accepted: {c:'green',i:'check-circle'}, Denied: {c:'red',i:'x-circle'} }[req.status];
-                    const acceptedMessage = req.status === 'Accepted' ? `<div class="mt-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg text-center"><p class="font-bold">Your order is accepted!</p><p class="text-sm text-gray-300">Please join our Discord for faster communication.</p><a href="https://discord.gg/7kj6eHGrAS" target="_blank" class="inline-block mt-2 bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded-full">Join Discord</a></div>` : '';
-                    
-                    const cardHTML = `<div class="bg-white/5 border border-white/10 rounded-xl p-6 fade-in" data-my-id="${req.id}"><div class="flex justify-between items-center"><p class="font-bold">${req.type}</p><span class="status-tag bg-${statusInfo.c}-500/10 text-${statusInfo.c}-400 flex items-center gap-2"><i data-lucide="${statusInfo.i}" class="w-4 h-4"></i>${req.status}</span></div><p class="text-sm text-gray-400 mt-2">${req.details}</p>${acceptedMessage}</div>`;
-                    D['my-requests-container'].insertAdjacentHTML('beforeend', cardHTML);
-                    lucide.createIcons();
-                });
-            });
-        };
-
-        const renderAdminUI = (settings) => {
-            const adminModalContent = `<div class="bg-gray-900 w-full max-w-6xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col"><div class="flex justify-between items-center p-5 border-b border-gray-800"><h2 class="text-xl font-bold">Admin Dashboard</h2><div class="flex items-center gap-4"><button id="admin-logout-button" class="text-sm font-bold text-red-400 hover:underline">Logout</button><button class="modal-close p-2 rounded-full hover:bg-gray-800"><i data-lucide="x"></i></button></div></div><div class="flex-grow p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-y-auto"><div class="lg:col-span-1 space-y-6"><div class="bg-gray-800/50 p-4 rounded-lg"><h3 class="font-bold mb-3">Statistics</h3><div class="space-y-2 text-sm"><p class="flex justify-between"><span>Pending Requests:</span> <span id="pending-count" class="font-bold bg-yellow-200 text-yellow-800 px-2 rounded-full">0</span></p><p class="flex justify-between"><span>Accepted Orders:</span> <span id="accepted-count" class="font-bold bg-green-200 text-green-800 px-2 rounded-full">0</span></p></div></div><div class="bg-gray-800/50 p-4 rounded-lg"><h3 class="font-bold mb-2">Broadcast Global Message</h3><textarea id="global-message-input" rows="3" class="w-full bg-gray-900 border border-gray-700 rounded-md p-2 text-sm">${settings.globalMessage}</textarea><button id="broadcast-button" class="mt-2 w-full bg-blue-600 text-white text-sm font-bold py-2 rounded-md hover:bg-blue-700">Broadcast</button></div><div class="bg-gray-800/50 p-4 rounded-lg"><h3 class="font-bold mb-2">Discord Webhook</h3><p class="text-xs text-gray-400 mb-2">Notifications are sent by a secure cloud function.</p><input type="url" id="webhook-url-input" value="${settings.webhookUrl}" class="w-full bg-gray-900 border border-gray-700 rounded-md p-2 text-sm"><button id="save-webhook-button" class="mt-2 w-full bg-gray-600 text-white text-sm font-bold py-2 rounded-md hover:bg-gray-700">Save URL</button></div><div class="bg-gray-800/50 p-4 rounded-lg flex justify-between items-center"><h3 class="font-bold">Accepting Orders?</h3><button id="status-toggle-button" class="relative inline-flex h-6 w-11 items-center rounded-full ${settings.isAcceptingOrders ? 'bg-green-600' : 'bg-gray-600'}"><span class="inline-block h-4 w-4 transform rounded-full bg-white transition ${settings.isAcceptingOrders ? 'translate-x-5' : 'translate-x-1'}"></span></button></div></div><div id="requests-container" class="lg:col-span-2 space-y-4 h-full overflow-y-auto pr-2"><p class="text-gray-500 text-center mt-10">Loading requests...</p></div></div></div>`;
-            toggleModal(D['admin-panel-modal'], adminModalContent);
-
-            db.collection('requests').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
-                const requests = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                const container = D['requests-container'];
-                if (!container) return;
-                container.innerHTML = requests.length ? requests.map(req => {
-                    const timeAgo = Math.round((new Date() - req.createdAt.toDate()) / 60000);
-                    const statusClass = { Pending: 'bg-yellow-500/10 text-yellow-400', Accepted: 'bg-green-500/10 text-green-400', Denied: 'bg-red-500/10 text-red-400' }[req.status];
-                    return `<div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700 fade-in" data-id="${req.id}"><div class="flex justify-between items-start"><div><p class="font-semibold">${req.email}</p><p class="text-sm text-gray-400">${req.discord} // ₹${req.budget}</p><p class="text-xs text-gray-400 mt-1">${timeAgo > 60 ? `${Math.round(timeAgo/60)}h` : `${timeAgo}m`} ago</p></div><span class="status-tag ${statusClass}">${req.status}</span></div><p class="mt-2 p-3 text-sm bg-gray-900 rounded">${req.details}</p>${req.status === 'Pending' ? `<div class="mt-3 flex gap-2"><button class="accept-btn w-full bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded">Accept</button><button class="deny-btn w-full bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-2 px-4 rounded">Deny</button></div>` : ''}</div>`;
-                }).join('') : `<p class="text-gray-500 text-center mt-10">No requests to display.</p>`;
-                
-                D['pending-count'].textContent = requests.filter(r => r.status === 'Pending').length;
-                D['accepted-count'].textContent = requests.filter(r => r.status === 'Accepted').length;
-            });
-        };
-        
-        const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        const isValidDiscord = (username) => /^.{3,32}#[0-9]{4}$/.test(username);
-
-        document.addEventListener('click', e => {
-            const target = e.target.closest('button, a');
-            if (!target) return;
-            const id = target.id;
-
-            if (id === 'theme-toggle-button') updateTheme(!document.documentElement.classList.contains('dark'));
-            if (id === 'tnc-button') toggleModal(D['tnc-modal'], D['tnc-modal'].dataset.content);
-            if (id === 'close-global-message') D['global-message-banner'].classList.add('hidden');
-            if (target.classList.contains('modal-close')) { toggleModal(D['tnc-modal']); toggleModal(D['admin-panel-modal']); }
-            
-            if (id === 'admin-panel-button') {
-                const email = prompt("Admin Login:\nPlease enter your admin email.");
-                if (email) {
-                    const password = prompt("Please enter your admin password.");
-                    if (password) {
-                        auth.signInWithEmailAndPassword(email, password).catch(err => alert("Login failed: " + err.message));
-                    }
-                }
-            }
-            if (id === 'admin-logout-button') auth.signOut();
-            if (id === 'broadcast-button') db.collection('settings').doc('global').update({ globalMessage: D['global-message-input'].value });
-            if (id === 'save-webhook-button') db.collection('settings').doc('global').update({ webhookUrl: D['webhook-url-input'].value });
-            if (id === 'status-toggle-button') db.collection('settings').doc('global').get().then(doc => db.collection('settings').doc('global').update({ isAcceptingOrders: !doc.data().isAcceptingOrders }));
-            
-            const card = target.closest('[data-id]');
-            if (card) {
-                const reqRef = db.collection('requests').doc(card.dataset.id);
-                if (target.classList.contains('accept-btn')) reqRef.update({ status: 'Accepted' });
-                if (target.classList.contains('deny-btn')) reqRef.update({ status: 'Denied' });
-            }
-        });
-
-        D['request-form'].addEventListener('submit', async e => {
-            e.preventDefault();
-            if (!isValidEmail(D.email.value)) return alert("Please enter a valid email address.");
-            if (!isValidDiscord(D['discord-user'].value)) return alert("Please enter a valid Discord username (e.g., user#1234).");
-            
-            const settingsDoc = await db.collection('settings').doc('global').get();
-            if (!settingsDoc.data().isAcceptingOrders) {
-                alert('Sorry, we are not accepting new orders at this time.');
-                return;
-            }
-            const newRequest = { email: D.email.value, discord: D['discord-user'].value, budget: D.budget.value, type: D['request-type'].value, details: D.details.value, status: 'Pending', createdAt: firebase.firestore.FieldValue.serverTimestamp() };
-            const docRef = await db.collection('requests').add(newRequest);
-            
-            let myRequestIds = JSON.parse(localStorage.getItem('myRequestIds')) || [];
-            myRequestIds.push(docRef.id);
-            localStorage.setItem('myRequestIds', JSON.stringify(myRequestIds));
-            renderMyRequests();
-            alert('Request submitted successfully! Track its status below.');
-            D['request-form'].reset();
-        });
-        
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                db.collection('settings').doc('global').get().then(doc => renderAdminUI(doc.data()));
-            } else {
-                toggleModal(D['admin-panel-modal'], false);
-            }
-        });
-
-        db.collection('settings').doc('global').onSnapshot(doc => {
-            const settings = doc.data();
-            updateOrderStatus(settings.isAcceptingOrders);
-            if (settings.globalMessage && D['global-message-banner']) {
-                D['global-message-banner'].classList.remove('hidden');
-                D['global-message-banner'].classList.add('flex');
-                D['global-message-text'].textContent = settings.globalMessage;
-            } else if (D['global-message-banner']) {
-                D['global-message-banner'].classList.add('hidden');
-            }
-        });
-
-        D['tnc-modal'].dataset.content = `<div class="bg-gray-900 w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col max-h-[80vh]"><div class="flex justify-between items-center p-5 border-b border-gray-800"><h2 class="text-xl font-bold">Terms & Conditions</h2><button class="modal-close p-2 rounded-full hover:bg-gray-800"><i data-lucide="x"></i></button></div><div class="p-6 text-sm space-y-4 overflow-y-auto text-gray-300"><p><strong>Last updated: 2025.</strong> Please read these terms carefully before using our service.</p><div><h3 class="font-bold text-gray-100">1. Services & Payment</h3><p>Full payment is required before any design work begins. Prices are quoted based on the project scope and are non-negotiable once agreed upon.</p></div><div><h3 class="font-bold text-gray-100">2. Revisions & Refunds</h3><p>We offer up to two minor revisions per design. Major redesigns may incur additional costs. Refunds are not guaranteed and are handled on a case-by-case basis. No refunds will be issued after final files are delivered.</p></div><div><h3 class="font-bold text-gray-100">3. Ownership & Usage</h3><p>Upon full payment, you (the client) own the rights to the final delivered design. We reserve the right to display the work in our portfolio unless a non-disclosure agreement is signed.</p></div></div></div>`;
-
-        renderMyRequests();
-        lucide.createIcons();
-    </script>
+  <div class="discord-box">
+    <p>It's down currently but not for long.<br>Join our Discord and stay updated 👇</p>
+    <a href="https://discord.gg/7kj6eHGrAS" class="discord-link" target="_blank">Join Discord</a>
+  </div>
 </body>
 </html>
