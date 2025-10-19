@@ -1,120 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>We'll Be Back Soon</title>
-  <link rel="icon" href="logify.ico" type="image/x-icon">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logify Makers - Professional Design Services</title>
+    <link rel="icon" href="logify.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-    body {
-      background: radial-gradient(circle at 20% 20%, #1e1e2f, #111);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      text-align: center;
-    }
+        :root {
+            /* Discord-inspired Color Palette */
+            --primary-color: #5865F2; /* Discord Blurple */
+            --bg-color: #23272A;      /* Discord Dark Charcoal */
+            --card-bg: rgba(44, 47, 51, 0.75); /* Discord UI Element Grey (more opaque) */
+            --text-color: #F2F3F5;    /* Discord Light Text */
+            --text-muted: #949BA4;    /* Discord Muted Text */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --success-color: #24b47e;
+            --danger-color: #f04747;
+        }
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      color: #bbb;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff;
-      }
-      to {
-        text-shadow: 0 0 20px #008cff, 0 0 40px #008cff, 0 0 60px #008cff;
-      }
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8; /* Increased for better readability */
+            overflow-x: hidden;
+        }
+        
+        #background-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            background: var(--bg-color);
+        }
 
-    .discord-box {
-      position: absolute;
-      bottom: 40px;
-      text-align: center;
-    }
+        .particle {
+            position: absolute;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 25s ease-in-out infinite;
+        }
 
-    .discord-box p {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-100vh) translateX(50px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
 
-    .discord-link {
-      display: inline-block;
-      background: #5865F2;
-      color: white;
-      padding: 10px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.3s, transform 0.2s;
-    }
+        body.modal-active {
+            overflow: hidden;
+        }
 
-    .discord-link:hover {
-      background: #4752C4;
-      transform: scale(1.05);
-    }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    /* Animated circles background */
-    .circle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(88, 101, 242, 0.15);
-      animation: float 10s infinite ease-in-out;
-    }
+        /* --- Header --- */
+        header {
+            background: rgba(35, 39, 42, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .circle:nth-child(1) {
-      width: 200px; height: 200px; top: 10%; left: 15%;
-      animation-delay: 0s;
-    }
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-    .circle:nth-child(2) {
-      width: 150px; height: 150px; top: 60%; left: 70%;
-      animation-delay: 2s;
-    }
+        .logo:hover {
+            filter: brightness(1.2);
+        }
 
-    .circle:nth-child(3) {
-      width: 100px; height: 100px; top: 30%; left: 80%;
-      animation-delay: 4s;
-    }
-  </style>
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* --- Hero Section --- */
+        #hero {
+            padding: 10rem 0;
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 4.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        #hero p {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            padding: 20px 45px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.25);
+            animation: pulse 2.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 20px rgba(88, 101, 242, 0.25); }
+            50% { transform: scale(1.03); box-shadow: 0 7px 30px rgba(88, 101, 242, 0.35); }
+            100% { transform: scale(1); box-shadow: 0 4px 20px rgba(88, 101, 242, 0.25); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.03);
+            animation-play-state: paused;
+            box-shadow: 0 7px 25px rgba(88, 101, 242, 0.35);
+            background-color: #4752C4;
+        }
+
+        /* --- General Section Styling --- */
+        section {
+            padding: 8rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 5rem;
+        }
+        
+        /* --- Grid & Card Styling --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .card .icon {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .card .icon svg {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card:hover .icon svg {
+            transform: scale(1.1) rotate(-8deg);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        
+        /* --- Pricing Card Specific Styles --- */
+        .pricing-grid {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        .pricing-card {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .pricing-card.premium {
+            border-color: var(--primary-color);
+            transform: scale(1.05); /* Make it stand out */
+        }
+        .pricing-card.premium:hover {
+            transform: scale(1.1) translateY(-12px); /* Enhanced hover */
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        .features-list {
+            list-style: none;
+            margin-top: 1.5rem;
+            flex-grow: 1; /* Pushes button to bottom */
+        }
+        .features-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .features-list li::before {
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+        }
+        .features-list .pro::before {
+            content: '✓';
+            color: var(--success-color);
+        }
+        .features-list .con::before {
+            content: '✗';
+            color: var(--danger-color);
+        }
+        .pricing-card .cta-button {
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center; padding: 3rem; margin-top: 5rem; border-top: 1px solid var(--border-color);
+        }
+        .footer-tnc-link {
+            color: var(--text-muted); text-decoration: none; cursor: pointer; transition: color 0.3s ease;
+        }
+        .footer-tnc-link:hover { color: var(--primary-color); }
+
+        /* --- T&C Modal --- */
+        .modal { position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal.is-open { opacity: 1; pointer-events: auto; }
+        
+        /* NEW: Keyframe for modal entrance animation */
+        @keyframes modalEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .modal-content { 
+            background: var(--card-bg); backdrop-filter: blur(15px); padding: 40px; border: 1px solid var(--border-color); 
+            border-radius: 16px; width: 90%; max-width: 800px; position: relative; 
+            max-height: 85vh; overflow-y: auto;
+            /* Remove old transform transition */
+        }
+        
+        /* NEW: Apply the cool animation when modal is opened */
+        .modal.is-open .modal-content { 
+            animation: modalEntrance 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .close-button { color: var(--text-muted); position: absolute; top: 15px; right: 25px; font-size: 32px; font-weight: bold; cursor: pointer; transition: color 0.3s ease; }
+        .close-button:hover { color: var(--text-color); }
+        .tnc-list { list-style-type: '✓  '; list-style-position: inside; padding-left: 1rem; }
+        .tnc-list li { margin-bottom: 1rem; padding-left: 0.5rem; }
+        .tnc-list li::marker { color: var(--primary-color); }
+        .tnc-list strong { font-weight: 600; color: var(--text-color); }
+
+        /* --- Animations & Responsive --- */
+        .hidden { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .visible { opacity: 1; transform: translateY(0); }
+        .card.hidden, .pricing-card.hidden { transition-delay: var(--delay, 0s); }
+
+        @media (max-width: 992px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.premium { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            header .container { flex-direction: column; gap: 1rem; }
+            #hero h1, .section-title { font-size: 2.8rem; }
+            #hero p { font-size: 1.15rem; }
+            section { padding: 5rem 0; }
+        }
+    </style>
 </head>
 <body>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
+    
+    <div id="background-wrap"></div>
 
-  <h1>🚧 We're Working on Something Awesome 🚧</h1>
-  <p>Our site is temporarily down for maintenance.</p>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Logify Makers</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#why-us">Why Us?</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <div class="discord-box">
-    <p>It's down currently but not for long.<br>Join our Discord and stay updated 👇</p>
-    <a href="https://discord.gg/7kj6eHGrAS" class="discord-link" target="_blank">Join Discord</a>
-  </div>
+    <main>
+        <section id="hero">
+            <div class="container hidden">
+                <h1>Your Vision, Professionally Crafted</h1>
+                <p>We Logify Makers create logos, banners for YouTube, professional profile photos, and thumbnails for very cheap. We offer the best service and support.</p>
+                <a href="https://discord.gg/7kj6eHGrAS" class="cta-button" target="_blank">Start Your Project on Discord</a>
+            </div>
+        </section>
+
+        <section id="services" class="container">
+            <h2 class="section-title hidden">Our Core Services</h2>
+            <div class="grid">
+                <div class="card hidden" style="--delay: 0.1s;">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
+                    <h3>Custom Logos</h3>
+                    <p>The heart of your brand. We create unique logos in any style—minimalist, mascot, or abstract—to ensure your identity is unforgettable and perfectly represents your vision.</p>
+                </div>
+                <div class="card hidden" style="--delay: 0.2s;">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+                    <h3>Social Media Banners</h3>
+                    <p>Make a powerful first impression. We design stunning, high-resolution banners for YouTube, Twitch, Twitter, and more, all optimized to capture attention and grow your audience.</p>
+                </div>
+                <div class="card hidden" style="--delay: 0.3s;">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+                    <h3>Profile Photos & Avatars</h3>
+                    <p>Define your online persona. From professional headshots to custom-drawn avatars and gaming characters, we create profile pictures that are polished and memorable.</p>
+                </div>
+                <div class="card hidden" style="--delay: 0.4s;">
+                     <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
+                    <h3>Video Thumbnails</h3>
+                    <p>Boost your click-through rate. Our thumbnails are designed to be vibrant, clear, and irresistible, ensuring your content stands out in a crowded feed and attracts more viewers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-us" class="container">
+            <h2 class="section-title hidden">Why Choose Us?</h2>
+            <div class="grid">
+                 <div class="card hidden" style="--delay: 0.1s;">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+                    <h3>Collaborative Process</h3>
+                    <p>Your project is managed in a private Discord ticket, allowing you to give direct feedback to the designer and request revisions until the result is perfect.</p>
+                </div>
+                 <div class="card hidden" style="--delay: 0.2s;">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+                    <h3>Affordable & Transparent</h3>
+                    <p>We believe professional design should be accessible. Our prices are competitive and clear from the start, with no hidden fees. Quality work that fits your budget.</p>
+                </div>
+                 <div class="card hidden" style="--delay: 0.3s;">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+                    <h3>Fast Turnaround</h3>
+                    <p>We respect your deadlines. Our streamlined process ensures that we deliver high-quality designs efficiently, so you can put your new assets to use as soon as possible.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="container">
+            <h2 class="section-title hidden">Pricing & Plans</h2>
+            <div class="grid pricing-grid">
+                <div class="pricing-card card hidden" style="--delay: 0.1s;">
+                    <h3>Basic</h3>
+                    <div class="price">Free</div>
+                    <ul class="features-list">
+                        <li class="pro">Simple Logos</li>
+                        <li class="pro">YouTube Banner</li>
+                        <li class="pro">Professional PFP</li>
+                        <li class="con">Orders accepted conditionally</li>
+                        <li class="con">No personal Discord calls</li>
+                        <li class="con">No 24/7 Support</li>
+                    </ul>
+                </div>
+                <div class="pricing-card card premium hidden" style="--delay: 0.2s;">
+                    <h3>Premium</h3>
+                    <div class="price">₹100 <span>/ Per Week</span></div>
+                    <ul class="features-list">
+                        <li class="pro">24/7 Support</li>
+                        <li class="pro">We will accept your order anytime</li>
+                        <li class="pro">Priority Custom Requests</li>
+                        <li class="pro">Faster delivery (within 24 hrs)</li>
+                        <li class="pro">Direct Access to the Editing Team</li>
+                        <li class="pro">Cool role in the server</li>
+                    </ul>
+                    <a href="https://discord.gg/7kj6eHGrAS" class="cta-button" target="_blank">Get Premium</a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Logify Makers. All Rights Reserved.</p>
+            <p><a id="open-tnc" class="footer-tnc-link">Terms & Conditions</a></p>
+        </div>
+    </footer>
+
+    <div id="tnc-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" aria-label="Close Terms and Conditions">&times;</span>
+            <h2 class="section-title" style="margin-bottom: 2rem;">Terms of Service</h2>
+            <ul class="tnc-list">
+                <li><strong>Ordering Process:</strong> All commission requests must be made by opening a ticket on our official Discord server. This ensures all communication and files are kept in one place.</li>
+                <li><strong>Payment:</strong> Full payment is required upfront before any design work begins. All payment details will be provided securely within your Discord ticket. Do not trust payment requests from any other source.</li>
+                <li><strong>Delivery:</strong> Final files will be delivered in high-resolution PNG format via your Discord ticket or email. Delivery times are estimates and depend on project complexity and client response time.</li>
+                <li><strong>Refund Policy:</strong> We do not guarantee a 100% refund. However, if you are not satisfied after the work is complete and request a refund, a partial refund of 40-50% may be considered. In some cases, no refund will be offered.</li>
+                <li><strong>Usage Rights:</strong> Upon completion and delivery, you (the client) receive full rights to use the design for personal and commercial purposes. We reserve the right to display the final work in our portfolio.</li>
+                <li><strong>Client Responsibility:</strong> You are responsible for providing a clear design brief and any necessary assets. Delays in providing feedback will affect the delivery timeline.</li>
+                <li><strong>Changes to T&C:</strong> Any changes to these terms will be announced on the Discord server. By using our services or joining the server, you agree to the current Terms & Conditions.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // NEW: Fix for auto-scroll on refresh bug
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+
+        // --- Particle Background Generator ---
+        const background = document.getElementById('background-wrap');
+        const particleCount = 50;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = Math.random() * 10 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDuration = `${Math.random() * 15 + 15}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            background.appendChild(particle);
+        }
+
+        // --- Scroll Animation ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        // --- T&C Modal Logic ---
+        const modal = document.getElementById("tnc-modal");
+        const openBtn = document.getElementById("open-tnc");
+        const closeBtn = document.querySelector(".close-button");
+        const body = document.body;
+        const openModal = () => { modal.classList.add("is-open"); body.classList.add("modal-active"); };
+        const closeModal = () => { modal.classList.remove("is-open"); body.classList.remove("modal-active"); };
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+        modal.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal(); });
+    </script>
 </body>
 </html>
